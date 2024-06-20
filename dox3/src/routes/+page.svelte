@@ -1,10 +1,11 @@
 <script>
-    import gif from "$lib/gif.gif";
+import gif from "$lib/gif.gif";
 import Stories from "./stories.svelte";
-
+    let color = '#4DAAFF';
     let todos = [];
     let newTodo = '';
     let timeString = '';
+    let user= 'Kino';
 
     function handleAddTodo() {
         if (newTodo.trim() !== '') {
@@ -26,20 +27,24 @@ import Stories from "./stories.svelte";
     }
     setInterval(updateTime, 1000);
 </script>
-
+<div style="background-color: #443742;">
 <div class="container">
     <div class="left">
         <p>dox3 alpha 1</p>
         <h1 class="greeting">Good Evening,</h1>
+        <h2>{user}</h2>
     </div>
     <div class="right">
         <p style="text-align: right;">{timeString}</p>
+        <center>
+            <img src={gif} width="40%" style="padding:25px;">
+        </center>
     </div>
 </div>
 
 <div class="container2">
     <div class="content">
-        <input type="text" id="fname" class="field" name="fname" bind:value={newTodo}> 
+        <input type="text" id="fname" class="field" name="fname" bind:value={newTodo} placeholder="New Todo"> 
         <button on:click={handleAddTodo}>+</button>
         <br><p style="color:black; font-size:25px;">To do</p>
         {#each todos as todo, index} 
@@ -47,24 +52,23 @@ import Stories from "./stories.svelte";
                 <label style="font-size: 20px;"> 
                     <input type="checkbox" bind:checked={todo.completed} style="transform: scale(2);"> {todo.text}
                 </label>
-                <button class="delete" on:click={() => handleDelete(index)}>❌</button> 
+                <button class="delete" on:click={() => handleDelete(index)} style="font-size:10px">❌</button> 
                 <br>   
             </div>
         {/each}
     </div>
 
     <div class="widget">
-        <center>
-            <img src={gif} width="50%" style="padding:25px;">
-        </center>
+
         <Stories />
     </div>
 </div>
-
+</div>
 <style>
     .container {
         padding: 20px 50px;
         display: flex;
+
     }
     .left {
         width: 50%;
@@ -75,10 +79,9 @@ import Stories from "./stories.svelte";
     .container2 {        
         border-radius: 30px 30px 0 0;
         padding: 50px 50px;
-        background-color: #F0F2FF;
+        background-color: #fcfeec;
         padding: 20px 50px;
         display: flex;
-        min-height: 65vh;
     }
     .content{
         width: 60%;
@@ -88,6 +91,8 @@ import Stories from "./stories.svelte";
     }
     .greeting{
         font-size: 60px;
+        padding-bottom: 0;
+        margin-bottom: 0;
     }
     .list{
         color: #000000;
@@ -110,7 +115,7 @@ import Stories from "./stories.svelte";
         border-bottom: 2px solid black;
     }
     button{
-        background-color:#4DAAFF;
+        background-color:#CEA07E;
         color: white;
         font-size: 20px;
         padding: 3px 9px;
