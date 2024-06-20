@@ -1,7 +1,13 @@
 # dox3  
 ### `To do list`  
 ![alt text](Thumbnails.png)  
-
+# How to start
+`cd dox3`  
+to start the frontend:  
+`npm run dev` or `npm run build`  
+to start the backend:  
+`cd server`  
+`node app.js`
 # Features  
 - To do list
 - Clock (literally)
