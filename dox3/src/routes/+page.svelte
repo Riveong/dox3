@@ -6,6 +6,8 @@ import Stories from "./stories.svelte";
     let newTodo = '';
     let timeString = '';
     let user= 'Kino';
+    let time = 0;
+    let interval;
 
     function handleAddTodo() {
         if (newTodo.trim() !== '') {
@@ -26,6 +28,27 @@ import Stories from "./stories.svelte";
         timeString = `${hours}:${minutes}:${seconds}`;
     }
     setInterval(updateTime, 1000);
+
+
+    function startTimer() {
+        if (!interval) {
+            interval = setInterval(() => {
+                time += 1;
+            }, 1000);
+        }
+    }
+
+    function stopTimer() {
+        clearInterval(interval);
+        interval = null;
+    }
+
+    function resetTimer() {
+        clearInterval(interval);
+        interval = null;
+        time = 0;
+    }
+    startTimer()
 </script>
 <div style="background-color: #443742;">
 <div class="container">
@@ -37,7 +60,20 @@ import Stories from "./stories.svelte";
     <div class="right">
         <p style="text-align: right;">{timeString}</p>
         <center>
-            <img src={gif} width="40%" style="padding:25px;">
+            <div class="container">
+                <div class="left">
+                    <img src={gif} width="80%" style="padding:25px;">
+                </div>
+                <div class="right">
+                    <h1>Stopwatch</h1>
+                    <div class="timer"><h2>{time} seconds passed!</h2></div>
+                    <button on:click={startTimer} class="stop">▶ Start</button>
+                    <button on:click={stopTimer} class="stop">⛔ Stop</button>
+                    <button on:click={resetTimer} class="stop">🕗 Restart</button>
+                    
+                </div>
+            </div>
+            
         </center>
     </div>
 </div>
@@ -89,6 +125,11 @@ import Stories from "./stories.svelte";
     .widget{
         width: 40%;
     }
+
+    .stop{
+        border-radius: 20px;
+    }
+
     .greeting{
         font-size: 60px;
         padding-bottom: 0;
