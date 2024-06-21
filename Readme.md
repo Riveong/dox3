@@ -14,6 +14,7 @@ to start the backend:
 - Sticky Notes
 # Upcoming Features  
 - Timer
+- Desktop App
 - Lofi Songs
 - Customizable Color
 - Username
